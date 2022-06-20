@@ -1,8 +1,10 @@
 const express = require('express');
-const mongoose = require('mongoose');
+require('dotenv').config();
+const db = require('./config/database');
 
 
 const app =express();
+const port = process.env.PORT || 4000
 
 app.get('/', (req, res)=>{
 
@@ -10,15 +12,16 @@ return res.send('Bienvenidos a mi aplicación de tareas');
 
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/test')
-.then(()=>{
-    console.log('coneccion establecida');
+db().then(()=>{
+    app.listen(port, ()=>{
+
+        console.log('El server esta corriendo '+ port);
+    });
+
 })
 .catch((error)=>{
-    console.log('conection filled',error);
+
+    console.log('El server esta corriendo '+ error);
+    
 });
 
-app.listen(5000, ()=>{
-
-    console.log('El server esta corriendo');
-});
