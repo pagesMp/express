@@ -12,6 +12,11 @@ return res.send('Bienvenidos a mi aplicación de tareas');
 
 });
 
+app.get('*', (req,res)=>{
+
+    return res.status(404).send('404 route not found');
+});
+
 db().then(()=>{
     app.listen(port, ()=>{
 
