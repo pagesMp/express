@@ -21,7 +21,7 @@ db().then(()=>{
 })
 .catch((error)=>{
 
-    console.log('El server esta corriendo '+ error);
+    console.log('no puedes entrar al servidor '+ error);
     
 });
 
