@@ -6,6 +6,18 @@ const db = require('./config/database');
 const app =express();
 const port = process.env.PORT || 4000
 
+    //devolver usuarios 
+
+app.get('/users', (req, res)=>{
+
+    return res.status(200).json({
+
+        success: true,
+        message: 'todos los Usuarios'
+    });
+
+})
+
 app.get('/', (req, res)=>{
 
 return res.send('Bienvenidos a mi aplicación de tareas');
