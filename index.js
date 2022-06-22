@@ -2,7 +2,6 @@ const express = require('express');
 const { model } = require('mongoose');
 require('dotenv').config();
 const db = require('./config/database');
-const User = require('./models/User');
 const userRoutes = require('./routes/user.routes');
 
 const app =express();
@@ -10,48 +9,9 @@ app.use(express.json());
 
 const port = process.env.PORT || 4000
 
-
 //ROUTES
 
 app.use('/api', userRoutes);
-
-app.post('/users', async (req, res)=>{
-try{
-    const {name, email, password} = req.body;
-    if(password > 6 ){
-
-        return ('error ')
-    } 
-        // const name = req.body.name;
-        // const email = req.body.email;
-        // const password = req.body.password;
-
-        const newUser ={
-            name,
-            email,
-            password
-        } 
-       await User.create(newUser);
-
-    return res.status(200).json({
-        success: true,
-        message: 'todos los Usuarios'
-    });
-
-}catch(error){
-    return res.status(500).json(
-
-        { 
-        success: false,
-        message: 'error al mostrar Usuarios',
-        error: error?.message|| error
-    })
-}
-
-
-})
-
-
 
 app.get('/', (req, res)=>{
 
