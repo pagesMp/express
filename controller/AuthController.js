@@ -99,4 +99,27 @@ authController.login = async (req,res) => {
 
 }
 
+authController.profile = async (req,res)=>{
+
+    try {
+
+        const {userId} = req.user_id;
+      const user =   await User.findOne({_id: userId});
+
+        return res.status(200).json({
+            success: true,
+            message: 'user profile',
+            data: user
+        });
+        
+    } catch (error) {
+        return res.status(500).json(
+            { 
+            success: false,
+            message: 'no tienes acceso al perfil',
+            error: error?.message|| error
+        })
+    }
+}
+
 module.exports = authController;
