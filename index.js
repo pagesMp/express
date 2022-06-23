@@ -3,6 +3,8 @@ const { model } = require('mongoose');
 require('dotenv').config();
 const db = require('./config/database');
 const userRoutes = require('./routes/user.routes');
+const AuthRoutes = require('./routes/auth.routes');
+const taskRoutes = require('./routes/task.routes');
 
 const app =express();
 app.use(express.json());
@@ -12,6 +14,8 @@ const port = process.env.PORT || 4000
 //ROUTES
 
 app.use('/api', userRoutes);
+app.use('/api', AuthRoutes);
+app.use('/api', taskRoutes);
 
 app.get('/', (req, res)=>{
 
